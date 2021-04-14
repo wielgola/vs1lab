@@ -12,30 +12,85 @@ a {
 }
 
 main {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  /* grid-template-rows: repeat(2, 1fr); */
 }
 
 .tagging {
   display: flex;
-  flex-direction: column;
-}
-
-.discovery {
-  display: flex;
-}
-
-.tagmap {
-  display: flex;
+  flex-direction: column;  
+   /* Überschrift Tagging und fieldset zu Tagging untereinander */
+  grid-column: 1/3;
+  /* width: 25%; */
+  /* flex-wrap: wrap; */
 }
 
 #fieldset_tagging {
   display:flex;
-  flex-direction: column;
+  flex-direction: column; /* Eingabefelder zu Latitude, Longitude... und Submitbutton untereinander */
+  /* grid-column: 1/2; */
+  /* grid-row: 1/2; */
 }
+
+.discovery {
+  /* display: flex; */
+  display: grid;
+  grid-column: 4/13;
+  grid-template-columns: repeat(9, 1fr);
+  /* width: 75%; */
+  /* flex-direction: column; */   /* wenn Überschrift drüber, alles untereinander, auch Karte */
+  /* flex-wrap: wrap; */
+}
+
+.discovery h2 {
+  grid-column: 1/10;
+  /* grid-row: 1/2; */
+}
+
+
 
 #fieldset_discovery {
   display: flex;
+  flex-direction: row;  /* Eingabefeld für Suche und Submitbutton nebeneinander */
+  grid-column: 1/10;
 }
+
+.taglist {
+  grid-column: 1/3;
+}
+
+.tagmap {
+  grid-column: 3/10;
+  /* grid-row: 2/3; */
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+  /* display: flex; */
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+/* 
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;} 
+*/
 
 .taglist li {
   padding: 8px;
