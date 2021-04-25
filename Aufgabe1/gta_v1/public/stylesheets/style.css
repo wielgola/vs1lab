@@ -1,182 +1,181 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #0004ff;
-}
-
 * {
   box-sizing: border-box;
 }
 
-main {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  /* grid-template-rows: repeat(2, 1fr); */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+[class*="col-"] {
+  display: flex;
+  padding: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+a {
+  color: rgb(0, 0, 0);
+}
+
+header {
+  background-color: rgb(0, 128, 255);
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+}
+
+body {
+  display: block;
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+input {
+  display: block;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 4px;
+}
+
+input[type=submit] {
+  margin-top: 30px;
+  width: 100px;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(0, 128, 255);
+  color: rgb(255, 255, 255);
+}
+
+input:hover {
+  padding: 3px;
+  border: 3px solid rgb(0, 128, 255);
+}
+
+input:focus {
+  outline: none;
+  padding: 3px;
+  border: 3px solid rgb(0, 128, 255);
+}
+
+input:invalid {
+  padding: 3px;
+  border: 3px solid rgb(255, 0, 0);
 }
 
 .tagging {
+  flex-direction: column;
+  color: rgb(0, 0, 0);
+}
+
+#tag-form_group {
   display: flex;
-  flex-direction: column;  
-   /* Überschrift Tagging und fieldset zu Tagging untereinander */
-  grid-column: 1/4;
-  /* width: 25%; */
-  /* flex-wrap: wrap; */
+  flex-direction: column;
+  margin: 5px;
 }
 
-#fieldset_tagging {
-  display:flex;
-  flex-direction: column; /* Eingabefelder zu Latitude, Longitude... und Submitbutton untereinander */
-  /* grid-column: 1/2; */
-  /* grid-row: 1/2; */
+#tag-form_submit-button {
+  position: sticky;
+  left: 100%;
 }
-
 
 .discovery {
-  /* display: flex; */
-  display: grid;
-  grid-column: 4/13;
-  grid-template-columns: repeat(9, 1fr);
-  /* width: 75%; */
-  /* flex-direction: column; */   /* wenn Überschrift drüber, alles untereinander, auch Karte */
-  /* flex-wrap: wrap; */
+  flex-direction: column;
+  color: rgb(0, 0, 0);
 }
 
-.discovery h2 {
-  grid-column: 1/10;
-  /* grid-row: 1/2; */
-}
-
-#fieldset_discovery {
+#filter-form_group {
   display: flex;
-  flex-direction: row;  /* Eingabefeld für Suche und Submitbutton nebeneinander */
-  grid-column: 1/10;
+  flex-direction: row;
+  margin: 5px;
+}
+
+#filter-form_search-input {
+  width: 30%;
+}
+
+#filter-form_apply-button  {
+  margin-top: 0px;
+  margin-left: 50px;
 }
 
 .taglist {
-  grid-column: 1/3;
+  flex-direction: column;
 }
 
-#results {
-  padding-left: 0%;
-  padding: 12px;
+.taglist ul {
+  padding-left: 0px;
+}
+
+.taglist li {
+  display: block;
+  margin: 5px;
+  background-color: rgb(0, 128, 255);
+  padding: 5px;
+  padding-left: 15px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
 }
 
 .tagmap {
-  grid-column: 3/10;
-  /* grid-row: 2/3; */
+  display: flex;
+  flex-direction: column;
 }
 
-
-.taglist li {
-  
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #33b5e5;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+#result-img {
+  width: 65%;
 }
 
-.taglist li:hover {
-  background-color: #0099cc;
+footer {
+  background-color: rgb(0, 128, 255);
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
 }
 
-.submit-button {
-  background-color: #33b5e5;
-  color: white;
-  border-radius: 4px;
-  border: none;
-  padding: 6px;
-  margin: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+/* map goes under results*/
+@media screen and (max-width: 1150px) {
+  .tag-mapping {
+      flex-direction: column;
+  }
+
+  .taglist {
+      width: 100%;
+  }
+
+  .tagmap {
+      width: 100%;
+  }
+
+  #filter-form_search-input {
+      width: 50%;
+  }
 }
 
-.submit-button:hover {
-  background-color: #0099cc;
-}
-
-.tagging input[type=text] {
-  padding: 4px;  
-  margin-top: 6px;
-  margin-bottom: 16px; 
-  border-radius: 4px;
-}
-
-.discovery input[type=text] {
-  padding: 4px;
-  margin: 8px;
-  border-radius: 4px; 
-}
-
-header, footer {
-  padding: 8px;
-  background-color:powderblue;
-}
-
-
-
-
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
+/* discovery goes below tagging */
+@media screen and (max-width: 950px) {
+  .row {
+      flex-direction: column;
+  }
 
   .tagging {
-    display: flex;
-    flex-direction: column;  
-     /* Überschrift Tagging und fieldset zu Tagging untereinander */
-    grid-column: 1/13;
-    /* width: 25%; */
-    /* flex-wrap: wrap; */
+      width: 100%;
   }
-  
-  #fieldset_tagging {
-    display:flex;
-    flex-direction: column; /* Eingabefelder zu Latitude, Longitude... und Submitbutton untereinander */
-    /* grid-column: 1/2; */
-    /* grid-row: 1/2; */
-  }
-  
+
   .discovery {
-    /* display: flex; */
-    display: grid;
-    grid-column: 1/13;
-    grid-template-columns: repeat(9, 1fr);
-    /* width: 75%; */
-    /* flex-direction: column; */   /* wenn Überschrift drüber, alles untereinander, auch Karte */
-    /* flex-wrap: wrap; */
-  }
-  
-  .discovery h2 {
-    grid-column: 1/10;
-    /* grid-row: 1/2; */
-  }
-  
-  #fieldset_discovery {
-    display: flex;
-    flex-direction: row;  /* Eingabefeld für Suche und Submitbutton nebeneinander */
-    grid-column: 1/10;
-  }
-  
-  .taglist {
-    grid-column: 1/10;
-  }
-  
-  .tagmap {
-    grid-column: 1/10;
-    /* grid-row: 2/3; */
-  }
-
-}
-
-@media only screen and (max-width: 1000px){
-  /* für Screens zwischen Vollbild und Handy: damit die Karte nicht aus dem Bildschirm geht */
-  .taglist {
-    grid-column: 1/10;
-  }
-  
-  .tagmap {
-    grid-column: 1/10;
-    /* grid-row: 2/3; */
+      width: 100%;
   }
 }
