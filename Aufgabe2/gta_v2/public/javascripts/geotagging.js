@@ -82,7 +82,7 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
     };
 
     // Hier API Key eintragen
-    var apiKey = "YOUR_API_KEY_HERE";
+    var apiKey = "PEEwKfj7vawAGaye1ePvGie71NmPJjFf";
 
     /**
      * Funktion erzeugt eine URL, die auf die Karte verweist.
@@ -121,6 +121,26 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
 
         updateLocation: function() {
             // TODO Hier Inhalt der Funktion "update" ergänzen
+            //console.log("updateLocation gestartet");
+
+
+            function onsuccess(){
+                //console.log("success");
+                console.log(gtaLocator.getCurrentPosition.latitude);
+                document.getElementById("tag-form_latitude-input").setAttribute("value", getLatitude(gtaLocator.getCurrentPosition));
+            }
+
+            function onerror(){
+                //console.log("fail");
+                alert("Error, could not access Location.");
+            }
+
+            tryLocate(onsuccess, onerror);
+
+            getLocationMapSrc(getLatitude, getLongitude, [], 1);
+            document.getElementById("result-img").setAttribute("src", getLocationMapSrc(getLatitude, getLongitude, [], 1));
+
+
         }
 
     }; // ... Ende öffentlicher Teil
@@ -132,6 +152,7 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
  * des Skripts.
  */
 $(function() {
-    alert("Please change the script 'geotagging.js'");
+    //alert("Please change the script 'geotagging.js'");
+    gtaLocator.updateLocation();
     // TODO Hier den Aufruf für updateLocation einfügen
 });
