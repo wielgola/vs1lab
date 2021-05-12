@@ -126,8 +126,11 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
 
             function onsuccess(){
                 //console.log("success");
-                console.log(gtaLocator.getCurrentPosition.latitude);
-                document.getElementById("tag-form_latitude-input").setAttribute("value", getLatitude(gtaLocator.getCurrentPosition));
+                //console.log(gtaLocator.getCurrentPosition.latitude);
+                //document.getElementById("tag-form_latitude-input").setAttribute("value", getLatitude(gtaLocator.getCurrentPosition));
+                document.getElementById("tag-form_latitude-input").value = "12345";
+                document.getElementById("tag-form_latitude-input").value = gtaLocator.getLatitude;
+                console.log(gtaLocator.getLatitude);
             }
 
             function onerror(){
