@@ -71,6 +71,19 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
         }
     };
 
+
+    function onsuccess(position){
+        document.getElementById("tag-form_latitude-input").value = parseFloat(getLatitude(position)).toFixed(6);
+        document.getElementById("tag-form_longitude-input").value = parseFloat(getLongitude(position)).toFixed(6);
+        document.getElementById("filter-form_latitude-input-hidden").value = parseFloat(getLatitude(position)).toFixed(6);
+        document.getElementById("filter-form_longitude-input-hidden").value = parseFloat(getLongitude(position)).toFixed(6);
+    }
+
+    function onerror(){
+        alert("Error, could not access Location.");
+    }
+
+
     // Auslesen Breitengrad aus der Position
     var getLatitude = function(position) {
         return position.coords.latitude;
@@ -121,29 +134,23 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
 
         updateLocation: function() {
             // TODO Hier Inhalt der Funktion "update" ergänzen
-            //console.log("updateLocation gestartet");
-
-
-            function onsuccess(){
-                //console.log("success");
-                //console.log(gtaLocator.getCurrentPosition.latitude);
-                //document.getElementById("tag-form_latitude-input").setAttribute("value", getLatitude(gtaLocator.getCurrentPosition));
-                document.getElementById("tag-form_latitude-input").value = "12345";
-                document.getElementById("tag-form_latitude-input").value = gtaLocator.getLatitude;
-                console.log(gtaLocator.getLatitude);
-            }
-
-            function onerror(){
-                //console.log("fail");
-                alert("Error, could not access Location.");
-            }
 
             tryLocate(onsuccess, onerror);
-
-            getLocationMapSrc(getLatitude, getLongitude, [], 1);
-            document.getElementById("result-img").setAttribute("src", getLocationMapSrc(getLatitude, getLongitude, [], 1));
-
-
+            //var mapURL = getLocationMapSrc(49.01379, 8.390071, [], 15);
+            var latitude = document.getElementById("tag-form_latitude-input").value;
+            var longitude = document.getElementById("tag-form_longitude-input").value;
+            if(latitude == ""){
+                latitude = 49.01379;
+                console.log("lat leer");
+            }
+            if(longitude == ""){
+                longitude = 8.390071;
+                console.log("long leer");
+            }
+            latitude = parseFloat(latitude).toFixed(6);
+            longitude = parseFloat(longitude).toFixed(6);
+            var mapURL = getLocationMapSrc(latitude, longitude, [], 15);
+            document.getElementById("result-img").src = mapURL;
         }
 
     }; // ... Ende öffentlicher Teil
@@ -157,5 +164,6 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
 $(function() {
     //alert("Please change the script 'geotagging.js'");
     gtaLocator.updateLocation();
+    //console.log(gtaLocator.updateLocation());
     // TODO Hier den Aufruf für updateLocation einfügen
 });
