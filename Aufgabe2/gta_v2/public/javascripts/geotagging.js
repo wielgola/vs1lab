@@ -81,7 +81,7 @@
          return position.coords.longitude;
      };
  
-     // Hier API Key eintragen
+     // Hier API-Key eintragen oder "YOUR_API_KEY_HERE", wenn kein API-Key verfügbar ist
      var apiKey = "Lz4I2AVG3C7BK1EIinTOzy0E5f6fZ6HZ";
  
      /**
@@ -91,7 +91,7 @@
       *
       * lat, lon : aktuelle Koordinaten (hier zentriert die Karte)
       * tags : Array mit Geotag Objekten, das auch leer bleiben kann
-      * zoom: Zoomfaktor der Karte
+      * zoom: Zoomfaktor der Karte (aus [0, 18] int) (15 ist ein guter Wert)
       */
      var getLocationMapSrc = function(lat, lon, tags, zoom) {
          zoom = typeof zoom !== 'undefined' ? zoom : 10;
@@ -116,10 +116,10 @@
      var tryLocateSuccess = function(position) {
          let latitude = getLatitude(position);
          let longitude = getLongitude(position);
-         let imgUrl = getLocationMapSrc(latitude, longitude);
+         let imgUrl = getLocationMapSrc(latitude, longitude, undefined, undefined);
  
-         document.getElementById("tag-form_latitude-input").value = latitude.toFixed(20);
-         document.getElementById("tag-form_longitude-input").value = longitude.toFixed(20);
+         document.getElementById("tag-form_latitude-input").value = latitude.toFixed(7);
+         document.getElementById("tag-form_longitude-input").value = longitude.toFixed(7);
          document.getElementById("filter-form_latitude-input-hidden").value = latitude;
          document.getElementById("filter-form_longitude-input-hidden").value = longitude;
  
